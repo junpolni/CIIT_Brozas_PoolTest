@@ -191,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swarmerPrefab: {fileID: 7450739227137656909, guid: b2d6fd1d6cbba794494e0e31e93c5df7,
     type: 3}
-  swarmerInterval: 3.5
+  swarmerInterval: 2
   stopEnemySpawn: 0
 --- !u!1 &80392407 stripped
 GameObject:
@@ -1037,6 +1037,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7450739227137656896, guid: b2d6fd1d6cbba794494e0e31e93c5df7,
+        type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7450739227137656897, guid: b2d6fd1d6cbba794494e0e31e93c5df7,
         type: 3}
       propertyPath: m_RootOrder
@@ -1100,7 +1105,7 @@ PrefabInstance:
     - target: {fileID: 7450739227137656909, guid: b2d6fd1d6cbba794494e0e31e93c5df7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d6fd1d6cbba794494e0e31e93c5df7, type: 3}

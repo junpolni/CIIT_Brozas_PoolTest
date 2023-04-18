@@ -9,21 +9,27 @@ public class Enemy : MonoBehaviour
     
     public float moveSpeed = 3f;
     [SerializeField] float health, maxHealth = 3f;
+    [SerializeField] private Healthbar healthBar;
 
     private GameObject player;
-
     private Transform target;
 
     private void Start()
     {
         health = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
+
+        healthBar.UpdateHealthBar(maxHealth, health);
+
     }
 
     public void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
         Debug.Log($"Enemy Health: {health}");
+
+        healthBar.UpdateHealthBar(maxHealth, health);
+
 
         if (health <= 0)
         {
