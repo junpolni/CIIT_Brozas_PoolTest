@@ -22,12 +22,11 @@ public class EnemySpawner : MonoBehaviour
         while (stopEnemySpawn == false)
         {
             GameObject newEnemy = ObjectPool.instance.GetEnemyPool();
-            newEnemy.transform.position = new Vector3(Random.Range(-5f, 5), Random.Range(-6f, 6f), 0);
+            newEnemy.transform.position = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
             newEnemy.SetActive(true);
 
             yield return new WaitForSeconds(interval);
-            //StartCoroutine(SpawnEnemy(interval, enemy));
-            //GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5), Random.Range(-6f, 6f), 0), Quaternion.identity);
+           
         }
 
         
