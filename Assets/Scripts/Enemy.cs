@@ -5,11 +5,10 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
-
     
     public float moveSpeed = 3f;
     [SerializeField] float health, maxHealth = 3f;
-    [SerializeField] private Healthbar healthBar;
+    //[SerializeField] private Healthbar healthBar;
 
     private GameObject player;
     private Transform target;
@@ -19,7 +18,7 @@ public class Enemy : MonoBehaviour
         health = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player");
 
-        healthBar.UpdateHealthBar(maxHealth, health);
+        //healthBar.UpdateHealthBar(maxHealth, health);
 
     }
 
@@ -28,16 +27,14 @@ public class Enemy : MonoBehaviour
         health -= damageAmount;
         Debug.Log($"Enemy Health: {health}");
 
-        healthBar.UpdateHealthBar(maxHealth, health);
+        //healthBar.UpdateHealthBar(maxHealth, health);
 
 
         if (health <= 0)
         {
-            //destroyEnemy.Invoke();
-            //Popup.enemyCount += 10;
-            ObjectPool.instance.GetEnemyPool();
+            KillCount.killCount++;
+            ObjectPooler.instance.GetEnemyPool();
             gameObject.SetActive(false);
-            //Destroy(gameObject);
             Debug.Log("Enemy has died.");
         }
     }
@@ -47,13 +44,13 @@ public class Enemy : MonoBehaviour
         Vector3 dir = player.transform.position - transform.position;
         transform.Translate(dir.normalized * moveSpeed * Time.deltaTime, Space.World);
 
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+
             target = other.transform;
 
             Debug.Log(target);

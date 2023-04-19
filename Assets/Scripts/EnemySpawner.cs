@@ -21,16 +21,14 @@ public class EnemySpawner : MonoBehaviour
     {
         while (stopEnemySpawn == false)
         {
-            GameObject newEnemy = ObjectPool.instance.GetEnemyPool();
-            newEnemy.transform.position = new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+            GameObject newEnemy = ObjectPooler.instance.GetEnemyPool();
+            newEnemy.transform.position = new Vector3(Random.Range(1, 50), 0.862f, Random.Range(1, 31));
             newEnemy.SetActive(true);
 
             yield return new WaitForSeconds(interval);
-           
         }
-
-        
     }
+
     public void OnPlayerDeath()
     {
         stopEnemySpawn = true;

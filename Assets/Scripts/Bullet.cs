@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,6 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-
     }
     private void OnCollisionEnter(Collision col)
     {
@@ -29,4 +29,5 @@ public class Bullet : MonoBehaviour
         }
 
     }
+
 }

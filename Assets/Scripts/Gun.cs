@@ -11,7 +11,7 @@ public class Gun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,20 +25,20 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GameObject bulletSpawn = ObjectPool.instance.GetBulletPool();
-            GameObject bulletMuzzleSpawn = ObjectPool.instance.GetBulletMuzzlePool();
+            GameObject bulletSpawn = ObjectPooler.instance.GetBulletPool();
+            GameObject bulletMuzzleSpawn = ObjectPooler.instance.GetBulletMuzzlePool();
 
             if (bulletSpawn != null)
             {
                 bulletSpawn.transform.position = BulletSpawnpoint.position;
                 bulletSpawn.SetActive(true);
-                StartCoroutine(ReturnBullet(bulletSpawn, 1f));
+                StartCoroutine(ReturnToPoolWithDelay(bulletSpawn, 1f));
 
                 bulletMuzzleSpawn.transform.position = BulletSpawnpoint.position;
                 bulletMuzzleSpawn.SetActive(true);
-                StartCoroutine(ReturnMuzzleFire(bulletMuzzleSpawn, 1f));
-            }
+                StartCoroutine(ReturnToPoolWithDelay(bulletMuzzleSpawn, 1f));
 
+            }
 
             //Instantiate(SpawnFX, BulletSpawnpoint.position, BulletSpawnpoint.rotation);
             //var bullet = Instantiate(BulletPrefab, BulletSpawnpoint.position, BulletSpawnpoint.rotation);
@@ -47,18 +47,11 @@ public class Gun : MonoBehaviour
         }
     }
 
-    IEnumerator ReturnMuzzleFire(GameObject muzzle, float duration)
+    IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay)
     {
-        yield return new WaitForSeconds(duration);
-
-        muzzle.SetActive(false);
-
+        yield return new WaitForSeconds(delay);
+        instance.SetActive(false);
     }
 
-    IEnumerator ReturnBullet(GameObject bullet, float duration)
-    {
-        yield return new WaitForSeconds(duration);
 
-        bullet.SetActive(false);
-    }
 }

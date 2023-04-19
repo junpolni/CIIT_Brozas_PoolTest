@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool : MonoBehaviour
+public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPool instance;
+    public static ObjectPooler instance;
 
     private List<GameObject> bulletPool = new List<GameObject>();
     [Header("GUN")]
@@ -40,9 +40,9 @@ public class ObjectPool : MonoBehaviour
 
         for (int i = 0; i < bulletMuzzlePoolSize; i++)
         {
-            GameObject enemy = Instantiate(bulletMuzzlePrefab);
-            enemy.SetActive(false);
-            bulletMuzzlePool.Add(enemy);
+            GameObject obj = Instantiate(bulletMuzzlePrefab);
+            obj.SetActive(false);
+            bulletMuzzlePool.Add(obj);
         }
 
         for (int i = 0; i < enemyPoolSize; i++)
@@ -65,12 +65,11 @@ public class ObjectPool : MonoBehaviour
 
         return null;
     }
-
     public GameObject GetBulletMuzzlePool()
     {
         for (int i = 0; i < bulletMuzzlePool.Count; i++)
         {
-            if (!bulletMuzzlePool[i].activeInHierarchy)
+            if (!bulletPool[i].activeInHierarchy)
             {
                 return bulletMuzzlePool[i];
             }

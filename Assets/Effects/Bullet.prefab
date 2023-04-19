@@ -14377,6 +14377,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35ac421042684bb4ba14b44001674cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 6143739408236139842}
+  bulletMuzzlePrefab: {fileID: 5113119360209544926, guid: 7ef8ce6fa7f5801468d7b5439f7cb281,
+    type: 3}
 --- !u!135 &1809678069725969300
 SphereCollider:
   m_ObjectHideFlags: 0
