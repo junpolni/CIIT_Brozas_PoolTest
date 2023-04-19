@@ -564,6 +564,9 @@ MonoBehaviour:
   enemyPoolSize: 10
   enemyPrefab: {fileID: 7450739227137656909, guid: b2d6fd1d6cbba794494e0e31e93c5df7,
     type: 3}
+  hitFXPoolSize: 20
+  hitFXPrefab: {fileID: 7318996557759636757, guid: c1a4fd6373b83b54f83ce4f345160b2a,
+    type: 3}
 --- !u!1001 &821522254
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private GameObject enemy;
+    public ParticleSystem hitFX;
+    public Transform bulletHitPoint;
 
     //[HideInInspector] public float BulletDamage;
     private void Start()
@@ -14,7 +16,6 @@ public class Bullet : MonoBehaviour
     }
     private void OnCollisionEnter(Collision col)
     {
-        //Destroy(gameObject);
 
         if(col.gameObject.CompareTag("Enemy"))
         {
@@ -24,10 +25,28 @@ public class Bullet : MonoBehaviour
                 enemyComponent.TakeDamage(1);
             }
 
-            gameObject.SetActive(false);
+            Destroy();
 
         }
 
     }
 
+    void Destroy()
+    {
+        //Instantiate(hitFX, transform.position, Quaternion.identity);
+
+        GameObject newHitFX = ObjectPooler.instance.GetHitFXPool();
+        newHitFX.transform.position = bulletHitPoint.position;
+        newHitFX.SetActive(true);
+
+        StartCoroutine(ReturnToPoolWithDelay(newHitFX, .5f));
+
+
+    }
+
+    IEnumerator ReturnToPoolWithDelay(GameObject instance, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        instance.SetActive(false);
+    }
 }

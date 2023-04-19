@@ -20,6 +20,11 @@ public class ObjectPooler : MonoBehaviour
     [SerializeField] private int enemyPoolSize = 10;
     [SerializeField] private GameObject enemyPrefab;
 
+    private List<GameObject> hitFXPool = new List<GameObject>();
+    [SerializeField] private int hitFXPoolSize = 10;
+    [SerializeField] private GameObject hitFXPrefab;
+
+
     private void Awake()
     {
         if (instance == null)
@@ -33,16 +38,16 @@ public class ObjectPooler : MonoBehaviour
     {
         for (int i = 0; i < bulletPoolSize; i++)
         {
-            GameObject obj = Instantiate(bulletPrefab);
-            obj.SetActive(false);
-            bulletPool.Add(obj);
+            GameObject objBullet = Instantiate(bulletPrefab);
+            objBullet.SetActive(false);
+            bulletPool.Add(objBullet);
         }
 
         for (int i = 0; i < bulletMuzzlePoolSize; i++)
         {
-            GameObject obj = Instantiate(bulletMuzzlePrefab);
-            obj.SetActive(false);
-            bulletMuzzlePool.Add(obj);
+            GameObject objMuzzle = Instantiate(bulletMuzzlePrefab);
+            objMuzzle.SetActive(false);
+            bulletMuzzlePool.Add(objMuzzle);
         }
 
         for (int i = 0; i < enemyPoolSize; i++)
@@ -51,6 +56,14 @@ public class ObjectPooler : MonoBehaviour
             enemy.SetActive(false);
             enemyPool.Add(enemy);
         }
+
+        for (int i = 0; i < hitFXPoolSize; i++)
+        {
+            GameObject objHit = Instantiate(hitFXPrefab);
+            objHit.SetActive(false);
+            hitFXPool.Add(objHit);
+        }
+
     }
 
     public GameObject GetBulletPool()
@@ -90,6 +103,21 @@ public class ObjectPooler : MonoBehaviour
 
         return null;
     }
+
+    public GameObject GetHitFXPool()
+    {
+        for (int i = 0; i < hitFXPool.Count; i++)
+        {
+            if (!hitFXPool[i].activeInHierarchy)
+            {
+                return hitFXPool[i];
+            }
+        }
+
+        return null;
+    }
+
+
 
 
 }
